@@ -140,8 +140,10 @@ function LaptopList({
 
   const handleExportCurrent = useCallback(async () => {
     try {
-      const data = await fetchAllLaptops(sortField, sortOrder, filters);
-      exportToCSV(data || [], 'laptop_inventory_filtered.csv', CSV_HEADERS);
+      const data: any = await fetchAllLaptops(sortField, sortOrder, filters);
+      // Extract rows since API returns { rows: Laptop[], totalRows: number }
+      const laptops = data.rows || [];
+      exportToCSV(laptops, 'laptop_inventory_filtered.csv', CSV_HEADERS);
     } catch (err) {
       console.error('Export filtered failed:', err);
     } finally {

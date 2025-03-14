@@ -2,14 +2,17 @@
 A full-featured web application for managing company laptop inventory, built for a technical assessment.
 
 ## Features
-- **List Laptops**: MUI DataGrid with server-side sorting, filtering, and pagination.
-- **View Details**: Modal popup with full laptop info.
-- **Add/Update**: Modal form for adding or editing laptops with validation.
-- **Decommission**: Soft-delete laptops by setting status to "Decommissioned."
-- **Export Report**: Download the current list as a CSV file.
+- **List Laptops**: Display laptops in a table with MUI DataGrid, supporting server-side sorting, filtering, and pagination.
+  - **View**: Click the "eye" icon to view detailed information about a laptop.
+  - **Edit**: Click the "edit" icon to modify laptop details.
+  - **Update Status**: Click the "status" icon to update the status (e.g., active, decommissioned).
+  - **Delete**: Click the "trash" icon to delete a laptop from the inventory.
+- **Export Report**: Download the current list of laptops as a CSV file, with the ability to export either the filtered data (respects current filter/sort) or the entire list of laptops.
+- **Add Laptop**: Add a new laptop
+
 
 ## Tech Stack
-- **Front-End**: React (Vite), Tailwind CSS, MUI (Material-UI)
+- **Front-End**: React (Vite), MUI (Material-UI)
 - **Back-End**: Node.js, Express
 - **Storage**: JSON file (simulated DB)
 
@@ -28,5 +31,4 @@ A full-featured web application for managing company laptop inventory, built for
 - Edit existing laptops by modifying form data (future enhancement: add an "Edit" button).
 
 ## Notes
-- Built in ~8 hours with a focus on modularity, UX, and full CRUD functionality.
 - Sandbox data included in `server/data/laptops.json`.

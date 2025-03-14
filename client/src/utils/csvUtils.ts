@@ -41,9 +41,15 @@ const escapeCsvValue = (value: string | number | null | undefined): string => {
  * @param data - The data to export.
  * @param filename - The name of the file to download.
  * @param headers - Custom headers; defaults to FIELD_MAPPING keys.
- * @throws {Error} If Blob or URL creation fails.
+ * @throws {Error} If data is not an array or Blob/URL creation fails.
  */
 export const exportToCSV = (data: Laptop[], filename: string, headers?: string[]): void => {
+  // Check if data is an array
+  if (!Array.isArray(data)) {
+    console.error('exportToCSV: Expected an array but received:', data);
+    throw new Error('Invalid data format: Data must be an array');
+  }
+
   // Use provided headers or default to FIELD_MAPPING keys
   const csvHeaders = headers || Object.keys(FIELD_MAPPING);
 
@@ -56,12 +62,12 @@ export const exportToCSV = (data: Laptop[], filename: string, headers?: string[]
         return escapeCsvValue('');
       }
 
-      // Handle nested properties explicitly
+      // Handle nested properties explicitly with optional chaining
       if (key === 'assignedStaff.name') {
-        return escapeCsvValue(item.assignedStaff.name);
+        return escapeCsvValue(item.assignedStaff?.name);
       }
       if (key === 'assignedStaff.employeeId') {
-        return escapeCsvValue(item.assignedStaff.employeeId);
+        return escapeCsvValue(item.assignedStaff?.employeeId);
       }
 
       // Handle top-level properties (exclude assignedStaff object)

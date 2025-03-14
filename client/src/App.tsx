@@ -1,4 +1,4 @@
-import { useState, useRef, RefObject, SyntheticEvent } from 'react';
+import { useState, useRef, SyntheticEvent } from 'react';
 import LaptopList from './components/LaptopList';
 import LaptopForm from './components/LaptopForm';
 import ErrorMessage from './components/ErrorMessage';
@@ -14,7 +14,7 @@ interface Toast {
 function App() {
   const [laptops, setLaptops] = useState<Laptop[]>([]);
   const [formMode, setFormMode] = useState<'add' | 'edit' | 'view' | null>(null);
-  const [formData, setFormData] = useState<Laptop | null>(null);
+  const [formData, setFormData] = useState<Laptop | undefined>(undefined); // Changed from null to undefined
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
@@ -24,7 +24,7 @@ function App() {
   const handleAddLaptop = (newLaptop: Laptop): void => {
     setIsFormOpen(false);
     setFormMode(null);
-    setFormData(null);
+    setFormData(undefined); // Changed from null to undefined
     setRefreshTrigger(prev => prev + 1);
     setError('');
     setToast({ open: true, message: 'Laptop added successfully!', severity: 'success' });
@@ -34,7 +34,7 @@ function App() {
   const handleUpdateLaptop = (updatedLaptop: Laptop): void => {
     setIsFormOpen(false);
     setFormMode(null);
-    setFormData(null);
+    setFormData(undefined); // Changed from null to undefined
     setRefreshTrigger(prev => prev + 1);
     setError('');
     setToast({ open: true, message: 'Laptop updated successfully!', severity: 'success' });
@@ -61,14 +61,14 @@ function App() {
 
   const handleOpenForm = (mode: 'add' | 'edit' | 'view', laptop: Laptop | null = null): void => {
     setFormMode(mode);
-    setFormData(laptop);
+    setFormData(laptop || undefined); // Convert null to undefined
     setIsFormOpen(true);
   };
 
   const handleCloseForm = (): void => {
     setIsFormOpen(false);
     setFormMode(null);
-    setFormData(null);
+    setFormData(undefined); // Changed from null to undefined
     addButtonRef.current?.focus();
   };
 
@@ -104,14 +104,16 @@ function App() {
           refreshTrigger={refreshTrigger}
           addButtonRef={addButtonRef}
         />
-        <LaptopForm
-          open={isFormOpen}
-          mode={formMode}
-          laptopData={formData}
-          onAddLaptop={handleAddLaptop}
-          onUpdateLaptop={handleUpdateLaptop}
-          onClose={handleCloseForm}
-        />
+        {isFormOpen && formMode && (
+          <LaptopForm
+            open={isFormOpen}
+            mode={formMode as 'add' | 'edit' | 'view'}
+            laptopData={formData}
+            onAddLaptop={handleAddLaptop}
+            onUpdateLaptop={handleUpdateLaptop}
+            onClose={handleCloseForm}
+          />
+        )}
         <Snackbar
           open={toast.open}
           autoHideDuration={6000}
