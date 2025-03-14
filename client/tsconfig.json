@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ESNext",                  /* Use the latest JavaScript features for modern browsers */
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], /* Include DOM and modern JS APIs for React */
+    "jsx": "react-jsx",                  /* Enable modern JSX transform for React with Vite */
+    "strict": true,                      /* Enable all strict type-checking options for safety */
+    "esModuleInterop": true,             /* Support importing CommonJS modules (e.g., Node.js) */
+    "forceConsistentCasingInFileNames": true, /* Ensure consistent file name casing */
+    "skipLibCheck": true,                /* Skip type checking of declaration files for faster builds */
+
+    /* Modules */
+    "module": "ESNext",                  /* Use ES modules, compatible with Vite */
+    "moduleResolution": "node",          /* Resolve modules like Node.js (Vite-compatible) */
+    "allowJs": true,                     /* Allow JavaScript files for incremental adoption */
+    "resolveJsonModule": true,           /* Enable importing JSON files (useful for config) */
+    "isolatedModules": true,             /* Ensure compatibility with Vite’s transpilation */
+    "noEmit": true,                      /* Let Vite handle output, TypeScript only type-checks */
+
+    /* Paths (Optional) */
+    "baseUrl": ".",                      /* Base directory for module resolution */
+    "paths": {
+      "@/*": ["src/*"]                  /* Alias '@' to 'src' for cleaner imports */
+    }
+  },
+  "include": ["src/**/*"],              /* Process all files in src/ */
+  "exclude": ["node_modules", "dist"]   /* Ignore build output and dependencies */
+}
