@@ -343,41 +343,5 @@
     "softwareSpecs": "Windows 11",
     "purchasePrice": 1400,
     "notes": "Tablet mode used frequently"
-  },
-  {
-    "id": "",
-    "status": "Active",
-    "serialNumber": "111",
-    "brand": "1111",
-    "model": "",
-    "assignedStaff": {
-      "name": "",
-      "employeeId": ""
-    },
-    "purchaseDate": "",
-    "warrantyExpiration": "",
-    "location": "",
-    "hardwareSpecs": "",
-    "softwareSpecs": "",
-    "purchasePrice": 0,
-    "notes": ""
-  },
-  {
-    "id": "",
-    "status": "Active",
-    "serialNumber": "111",
-    "brand": "1111",
-    "model": "test",
-    "assignedStaff": {
-      "name": "",
-      "employeeId": ""
-    },
-    "purchaseDate": "",
-    "warrantyExpiration": "",
-    "location": "",
-    "hardwareSpecs": "",
-    "softwareSpecs": "",
-    "purchasePrice": 0,
-    "notes": ""
   }
 ]

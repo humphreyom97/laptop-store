@@ -73,11 +73,11 @@ const createRouter = (readLaptops, writeLaptops, defaultPageSize) => {
       if (!brand) return res.status(400).json({ error: 'Brand is required' });
       if (!serialNumber) return res.status(400).json({ error: 'Serial Number is required' });
       const laptops = await readLaptops();
-      const newLaptop = {
-        id: uuidv4(),
-        status: 'Active',
-        ...req.body,
-      };
+      const newLaptop = Object.assign(
+        {}, // Start with an empty object
+        req.body, // Merge in req.body
+        { id: uuidv4(), status: 'Active' } // Override with backend values for id and status
+      );
       laptops.push(newLaptop);
       await writeLaptops(laptops);
       res.status(201).json(newLaptop);

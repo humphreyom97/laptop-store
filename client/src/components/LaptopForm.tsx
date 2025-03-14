@@ -4,7 +4,7 @@ import {
   TextField, Button, MenuItem
 } from '@mui/material';
 import { updateLaptop } from '../services/api';
-import { Laptop } from '../types'; // Import the existing Laptop interface
+import { Laptop } from '../types';
 
 // Define only the additional interfaces we need
 interface FormErrors {
@@ -27,7 +27,7 @@ function LaptopForm({ open, mode, laptopData, onAddLaptop, onUpdateLaptop, onClo
     serialNumber: '',
     brand: '',
     model: '',
-    assignedStaff: { name: '', employeeId: '' }, // Default to empty strings
+    assignedStaff: { name: '', employeeId: '' },
     status: 'Active',
     purchaseDate: '',
     warrantyExpiration: '',
